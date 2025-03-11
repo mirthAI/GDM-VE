@@ -20,7 +20,7 @@ def parse_args_and_config():
     parser = argparse.ArgumentParser(description=globals()["__doc__"])
 
     parser.add_argument(
-        "--config", type=str, default="ldfd_linear.yml", help="Path to the config file"
+        "--config", type=str, default="ldfd.yml", help="Path to the config file"
     )
     parser.add_argument(
         "--dataset", type=str, default="LDFDCT", help="Name of dataset(LDFDCT, PMUB)"
@@ -82,7 +82,7 @@ def parse_args_and_config():
         help="sample involved time steps according to (uniform or non-uniform)",
     )
     parser.add_argument(
-        "--timesteps", type=int, default=1000, help="number of steps involved"
+        "--timesteps", type=int, default=15, help="number of steps involved"
     )
     parser.add_argument(
         "--eta",

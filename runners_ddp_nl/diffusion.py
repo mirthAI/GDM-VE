@@ -66,8 +66,6 @@ class Diffusion(object):
             dataset = LDFDCT(self.config.data.train_dataroot, self.config.data.image_size, split='train')
             print('Start training your GDM model on LDFDCT dataset.')
 
-        print('The scheduler sampling type is {}. The number of involved time steps is {} out of 1000.'.format(self.args.scheduler_type, self.args.timesteps))
-
         train_loader = data.DataLoader(
             dataset,
             batch_size=config.training.batch_size,
@@ -169,7 +167,6 @@ class Diffusion(object):
 
         dataset = PMUB(self.config.data.train_dataroot, self.config.data.image_size, split='train')
         print('Start training your GDM model on PMUB dataset.')
-        print('The scheduler sampling type is {}. The number of involved time steps is {} out of 1000.'.format(self.args.scheduler_type, self.args.timesteps))
         train_loader = data.DataLoader(
             dataset,
             batch_size=config.training.batch_size,
@@ -466,7 +463,7 @@ class Diffusion(object):
                     torch.save(states, os.path.join(self.args.log_path, "ckpt.pth"))
 
                
-    # Sampling for tasks that have two conditions: multi image super-resolution.
+    # Sampling for tasks that have two conditions: multi-image super-resolution.
     def sr_sample(self):
         ckpt_list = self.config.sampling.ckpt_id
         for ckpt_idx in ckpt_list:
