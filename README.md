@@ -23,7 +23,7 @@ Diffusion models transform an unknown data distribution into a Gaussian prior by
 
 
 ## Datasets
-In the paper, we train and evaluate our model on two image-to-image translation tasks:
+In the paper, we train and evaluate our model on two image-to-image generation tasks:
 
 * LDCT-and-Projection-data dataset for single-condition image-to-image translation (denoising task).
 * Prostate-MRI-US-Biopsy dataset for multiple-condition image-to-image translation (super-resolution task).
@@ -54,7 +54,7 @@ You can download the dataset from the link we provide or the official public dat
 ```
 
 
-## Running the Experiments
+### 4. Running the Experiments
 * Training a GDM model
 
 ```
@@ -68,6 +68,14 @@ sh GDM.sh --config {DATASET}.yml --dataset {DATASET_NAME} --exp {PROJECT_PATH} -
 ```
 
 For the image denoising task, the `{DATASET}.yml` and `DATASET_NAME` should be `ldfd.yml` and `LDFDCT`. For the super-resolution task, the `{DATASET}.yml` and `DATASET_NAME` should be `pmub.yml` and `PMUB`. `STEPS` controls the number of steps from the pure noise distribution to the image distribution during sampling, with 15 steps used by default.
+
+If you want to use our pre-trained model for sampling, you can put the downloaded pre-trained weights in `pretrained_GDM/logs/{TASK_NAME}/ckpt_45000.pth`, and then run the sampling with the following command:
+
+```
+sh GDM.sh --config {DATASET}.yml --dataset {DATASET_NAME} --exp pretrained_GDM --doc {TASK_NAME} --sample --fid --timesteps {STEPS}
+```
+
+where `TASK_NAME` is `denoising` or `super-resolution` respectively.
 
 
 ## References
